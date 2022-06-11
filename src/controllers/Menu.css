@@ -1,0 +1,65 @@
+.Menu{
+    position: relative;
+    margin: 2em 3em;
+}
+
+.m-item{
+    position: absolute;
+    top: 0;
+
+    width: 5.5em;
+    background-color: #1e13e9;
+    box-shadow: 1px 2px 2px #01011f;
+
+    padding: 0.2em;
+
+    border-radius: 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.2em;
+    color: #EDFFEC;
+    cursor: pointer;
+
+    transition: 1s;
+}
+
+.m-item:hover{
+    border: 1px solid black;
+}
+
+.m-logo{
+    z-index: 1;
+}
+
+.open-1{
+    top: 1.8em;
+    background-color: #0b080f;
+}
+.open-2{
+    top: 3.6em;
+    background-color: #3f1c9a;
+}
+.open-3{
+    top: 5.4em;
+    background-color: #00BBF9;
+}
+.open-4{
+    top: 7.2em;
+    background-color: #443672;
+}
+.open-5{
+    top: 9em;
+    background-color: #0b080f;
+    ;
+}
+.open-6{
+    top: 10.8em;
+    background-color: #3f1c9a;
+}
+.open-7{
+    top: 12.6em;
+    background-color: #00BBF9;
+}
