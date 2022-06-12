@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import jedi from './img/obi-wan.jpg';
 
 const Species = () => {
   
   const [specie, setspecie] = useState({});
   const [id, setId] = useState(1);
   const [idFromClic, setIdFromClic] = useState(1);
+  const [errorMsg, setErrorMsg] = useState('');
   
   const handleClic = () => {
     setIdFromClic(id);
@@ -20,10 +22,11 @@ const Species = () => {
             setspecie(response.data);
         })
         .catch(error => {
-            setspecie('error.null')
+          setErrorMsg(error.response.message);
         });
   }, [idFromClic]);
 
+  if(errorMsg === ''){
   return (
     <div>
         <input type="text" value={id} onChange={e => setId(e.target.value) } />
@@ -41,5 +44,18 @@ const Species = () => {
         </div>
     </div>
   );
+  }else{
+    return(
+        <>
+          <div>
+            <h3>Estas no son las especies que estas buscando</h3>
+            <img src={jedi} alt='Obi-Wan Kenobi'/>
+          </div>
+          <div>
+            <a href="/species" >Back to Species</a>
+          </div>
+        </>
+    );
+  }
 }
 export default Species;

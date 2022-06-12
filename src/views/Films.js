@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import jedi from './img/obi-wan.jpg';
 
 const Films = () => {
   
   const [film, setFilm] = useState({});
   const [id, setId] = useState(1);
   const [idFromClic, setIdFromClic] = useState(1);
+  const [errorMsg, setErrorMsg] = useState('');
   
   const handleClic = () => {
     setIdFromClic(id);
@@ -20,10 +22,11 @@ const Films = () => {
             setFilm(response.data);
         })
         .catch(error => {
-            setFilm('error.null')
+          setErrorMsg(error.response.message);
         });
   }, [idFromClic]);
 
+  if(errorMsg === ''){
   return (
     <div className="App">
         <input type="text" value={id} onChange={e => setId(e.target.value) } />
@@ -38,5 +41,18 @@ const Films = () => {
         </div>
     </div>
   );
+  }else{
+    return(
+        <>
+          <div>
+            <h3>Estas no son las películas que estas buscando</h3>
+            <img src={jedi} alt='Obi-Wan Kenobi'/>
+          </div>
+          <div>
+            <a href="/films" >Back to Films</a>
+          </div>
+        </>
+    );
+  }
 }
 export default Films;

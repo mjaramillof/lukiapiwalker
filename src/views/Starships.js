@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import jedi from './img/obi-wan.jpg'
 
 const Starships = () => {
   
   const [starship, setStarship] = useState({});
   const [id, setId] = useState(2);
   const [idFromClic, setIdFromClic] = useState(2);
+  const [errorMsg, setErrorMsg] = useState('');
   
   const handleClic = () => {
     setIdFromClic(id);
@@ -20,10 +22,11 @@ const Starships = () => {
             setStarship(response.data);
         })
         .catch(error => {
-            setStarship('error.null')
+          setErrorMsg(error.response.message)
         });
   }, [idFromClic]);
 
+  if(errorMsg === ''){
   return (
     <div>
         <input type="text" value={id} onChange={e => setId(e.target.value) } />
@@ -45,5 +48,19 @@ const Starships = () => {
         </div>
     </div>
   );
+  }else{
+    return(
+        <>
+          <div>
+            <h3>Esas no son las naves que estás buscando</h3>
+            <img src={jedi} alt='Obi-Wan Kenobi'/>
+          </div>
+          <div>
+            <a href="/starships" >Back to Starships</a>
+          </div>
+        </>
+    );
+  }
+
 }
 export default Starships;

@@ -14,9 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* dropdown menu */}
         <Menu/>
-        {/* routes */}
         <Switch>
           <Route exact path="/">
             <Home />
